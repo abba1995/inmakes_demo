@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+
+      We have variety of products.
+{% endblock %}
+
+{% block title %}
+  Search
+{% endblock %}
+
+{% block content %}
+<div>
+  <p class="text-center my_search_text">You have searched for:<b>"{{query}}"</b></p>
+</div>
+<div class="container">
+    <div class="row mx-auto">
+        {% for product in products %}
+        <div class="my_bottom_margin col-md-4 col-lg-3">
+            <div class="card text-center">
+                <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p><b>Rs {{product.price}}/-</b></p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="mx-auto">
+            <p class="text-center my_search_text">0 Results found</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
